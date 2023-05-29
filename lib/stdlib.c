@@ -178,3 +178,63 @@ int rand(void) {
 
     return isaac_rand_result;
 }
+
+void qsort(void* base, size_t nmemb, size_t size, int (*compar)(const void*, const void*)) {
+    if (nmemb <= 1) {
+        return;
+    }
+
+    char* base_ptr = (char*)base;
+    char* pivot = base_ptr + (nmemb / 2) * size;
+    char* left = base_ptr;
+    char* right = base_ptr + (nmemb - 1) * size;
+
+    while (left <= right) {
+        while (compar(left, pivot) < 0) {
+            left += size;
+        }
+
+        while (compar(right, pivot) > 0) {
+            right -= size;
+        }
+
+        if (left <= right) {
+            for (size_t i = 0; i < size; ++i) {
+                char temp = left[i];
+                left[i] = right[i];
+                right[i] = temp;
+            }
+            left += size;
+            right -= size;
+        }
+    }
+
+    size_t left_size = ((right - base_ptr) / size) + 1;
+    size_t right_size = (nmemb - left_size);
+
+    qsort(base_ptr, left_size, size, compar);
+    qsort(left, right_size, size, compar);
+}
+
+void* bsearch(const void* key, const void* base, size_t nmemb, size_t size, int (*compar)(const void*, const void*)) {
+    const char* base_ptr = (const char*)base;
+
+    size_t left = 0;
+    size_t right = nmemb;
+
+    while (left < right) {
+        size_t middle = left + (right - left) / 2;
+        const void* middle_element = base_ptr + middle * size;
+        int comparison = compar(key, middle_element);
+
+        if (comparison < 0) {
+            right = middle;
+        } else if (comparison > 0) {
+            left = middle + 1;
+        } else {
+            return (void*)middle_element;
+        }
+    }
+
+    return NULL;
+}

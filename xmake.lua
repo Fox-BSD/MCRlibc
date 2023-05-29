@@ -7,6 +7,6 @@ target("MCRlibc")
     set_kind("object")
     add_includedirs("include")
     add_files("lib/**.c")
-    add_cflags("-nostdlib", "-nostdinc")
+    add_cflags("-nostdlib", "-nostdinc", "-ffreestanding")
 
 

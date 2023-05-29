@@ -4,7 +4,7 @@ set_toolset("cxx", "clang")
 set_toolset("ld", "clang++")
 
 target("MCRlibc")
-    set_kind("binary")
+    set_kind("object")
     add_includedirs("include")
     add_files("lib/**.c")
 

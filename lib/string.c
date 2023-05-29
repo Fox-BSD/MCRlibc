@@ -1,27 +1,25 @@
 #include "string.h"
 #include "stdbool.h"
 
-int isspace(int c) {
-    return (c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\f' || c == '\v');
+size_t strlen(const char *str) {
+    size_t len = 0;
+    while (str[len])
+        len++;
+    return len;
 }
 
-int isdigit(int c) {
-    return (c >= '0' && c <= '9');
+char* strcpy(char *dest, const char *src) {
+    char *temp = dest;
+    while ((*dest++ = *src++))
+        ;
+    return temp;
 }
 
-int isalpha(int c) {
-    return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
-}
-
-int isalnum(int c) {
-    return (isalpha(c) || isdigit(c));
-}
-
-int tolower(int c) {
-    if (isalpha(c)) {
-        if (c >= 'A' && c <= 'Z') {
-            return c + ('a' - 'A');
-        }
-    }
-    return c;
+char* strcat(char *dest, const char *src) {
+    char *temp = dest;
+    while (*dest)
+        dest++;
+    while ((*dest++ = *src++))
+        ;
+    return temp;
 }

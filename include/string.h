@@ -1,11 +1,9 @@
 #ifndef _STRING_H
 #define _STRING_H
 
-#include "stdbool.h"
+#include "stdint.h"
 
-int isspace(int c);
-int isdigit(int c);
-int isalpha(int c);
-int isalnum(int c);
-int tolower(int c);
+size_t strlen(const char* str);
+char* strcpy(char* dest, const char* src);
+char* strcat(char* dest, const char* src);
 #endif

@@ -19,11 +19,11 @@
 
 // Tipo inteiro para ponteiro 
 typedef long int intptr_t;
-typedef unsigned long int uintptr_t;
+typedef unsigned long uintptr_t;
 
 // Tipo inteiro para tamanho 
 typedef long int ptrdiff_t;
-typedef unsigned long int size_t;
+typedef unsigned int size_t;
 
 // Tipos inteiros com largura fixa 
 typedef signed char int8_t;
